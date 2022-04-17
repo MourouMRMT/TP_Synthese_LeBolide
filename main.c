@@ -68,11 +68,7 @@ void arret()
     LATD=0;
 }
 
-void affichage()
-{
-}
-
-detection_obstacle()
+void detection_obstacle()
 {
     //Generarion MLI
     LATCbits.LATC0=1;
@@ -98,6 +94,12 @@ detection_obstacle()
     TMR1=0;
 
 }
+
+void affichage()
+{
+}
+
+
 void main(void)
 {
     /* Configure the oscillator for the device */
