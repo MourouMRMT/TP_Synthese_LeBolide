@@ -25,7 +25,7 @@
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"       /* User funct/params, such as InitApp */
 
-#define _XTAL_FREQ 4000000
+#define _XTAL_FREQ 4000000 //Fixe la frequence de l'oscilateur sur 4MHz
 
 #pragma config FOSC=INTOSCIO
 #pragma config WDTEN=OFF
