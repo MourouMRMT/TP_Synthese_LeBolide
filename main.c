@@ -38,6 +38,15 @@
 #pragma config WDTEN=OFF
 #pragma config MCLRE=OFF
 #pragma config LVP=OFF
+
+/*
+Config:
+ -D0,D1:moteur arriere gauche
+ -D2,D3:moteur arriere droit
+ D0,D2:marche avant
+ D1,D3:marche arriere
+ */
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -94,9 +103,7 @@ void detection_obstacle()
     {
         Distance=Duree/58 ;
         arret();
-        recule(1);
-        __delay_ms(100);
-    }else{avance(1);LATDbits.LATD0=1;}
+    }else{avance(1);}
     Duree=0;
     TMR1=0;
 
