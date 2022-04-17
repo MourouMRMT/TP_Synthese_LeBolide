@@ -1,4 +1,11 @@
 /******************************************************************************/
+                /*Programme by MARIMOUTOU Mourougen*/
+                            /*Date:04/2022*/
+                            /*Revision:0.1*/
+/******************************************************************************/
+
+
+/******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
 
@@ -74,23 +81,23 @@ void detection_obstacle()
     LATCbits.LATC0=1;
     __delay_us(10);
     LATCbits.LATC0=0;
-    
-    while(PORTCbits.RC1==0);               
-    T1CONbits.TMR1ON=1;               
-    while(PORTCbits.RC1==1);               
-    T1CONbits.TMR1ON=0; 
-    
-    int Timer=TMR1;                     
+
+    while(PORTCbits.RC1==0);
+    T1CONbits.TMR1ON=1;
+    while(PORTCbits.RC1==1);
+    T1CONbits.TMR1ON=0;
+
+    int Timer=TMR1;
     int Duree=Timer/2;
     int Distance;
-    if(Duree<60)               
+    if(Duree<60)
     {
         Distance=Duree/58 ;
         arret();
         recule(1);
         __delay_ms(100);
     }else{avance(1);LATDbits.LATD0=1;}
-    Duree=0;                     
+    Duree=0;
     TMR1=0;
 
 }
@@ -107,7 +114,7 @@ void main(void)
 
     /* Initialize I/O and Peripherals for application */
     InitApp();
-    
+
     /* TODO <INSERT USER APPLICATION CODE HERE> */
     TRISD=0;
     ANSELD=0;
