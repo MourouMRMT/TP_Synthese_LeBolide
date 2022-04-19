@@ -43,8 +43,10 @@
 Config:
  -D0,D1:moteur arriere gauche
  -D2,D3:moteur arriere droit
- D0,D2:marche avant
- D1,D3:marche arriere
+ -D4,D5:moteur avant gauche
+ -D6,D7:moteur avant droit
+ D0,D2,D4,D6:marche avant
+ D1,D3,D5,D7:marche arriere
  */
 
 /******************************************************************************/
@@ -77,6 +79,32 @@ void recule(int imp)
         LATDbits.LATD3=1;
 
     }else{LATD=0;}
+}
+
+void tourner_droite()
+{
+    LATDbits.LATD0=0;
+    LATDbits.LATD1=1;
+    LATDbits.LATD2=1;
+    LATDbits.LATD3=0;
+    LATDbits.LATD4=0;
+    LATDbits.LATD5=1;
+    LATDbits.LATD6=1;
+    LATDbits.LATD7=0;
+
+}
+
+void tourner_gauche()
+{
+
+    LATDbits.LATD0=1;
+    LATDbits.LATD1=0;
+    LATDbits.LATD2=0;
+    LATDbits.LATD3=1;
+    LATDbits.LATD4=1;
+    LATDbits.LATD5=0;
+    LATDbits.LATD6=0;
+    LATDbits.LATD7=1;
 }
 
 void arret()
