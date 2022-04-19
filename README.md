@@ -13,9 +13,9 @@ Programme a dispostion mais recopie discutable.
 #### Jusque'ici je peux :
 * avancer/Reculer
 * Detecter la zone d'arret au moyen d'un capteur a ultrasons et m'__arreter__
+* Tourner (gauche/droite)
 
 ##### A faire:
-- Tourner (gauche/droite)
 - faire le tour de la boite
 - affichage oled
 
