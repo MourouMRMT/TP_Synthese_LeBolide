@@ -10,8 +10,13 @@ Programme a dispostion mais recopie discutable.
 - Faire le tour de la boite
 - Revenir et s'arreter dans la zone d'arret
 
-Jusque'ici je peux:
+#### Jusque'ici je peux :
 * avancer/Reculer
-* Detecter la zone d'arret au moyen d'un capteur a ultrasons et m'arreter
+* Detecter la zone d'arret au moyen d'un capteur a ultrasons et m'__arreter__
+
+##### A faire:
+- Tourner (gauche/droite)
+- faire le tour de la boite
+- affichage oled
 
 
