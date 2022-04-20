@@ -16,7 +16,8 @@ Programme a dispostion mais recopie discutable.
 * Tourner (gauche/droite)
 
 ##### A faire:
-- faire le tour de la boite
-- affichage oled
+- Lancer le programme au "clap"
+- Faire le tour de la boite
+- Affichage oled
 
 
