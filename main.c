@@ -1,7 +1,7 @@
 /******************************************************************************/
                 /*Programme by MARIMOUTOU Mourougen*/
                             /*Date:04/2022*/
-                            /*Revision:0.1*/
+                            /*Revision:0.2*/
 /******************************************************************************/
 
 
@@ -118,16 +118,16 @@ void detection_obstacle()
     LATCbits.LATC0=1;
     __delay_us(10);
     LATCbits.LATC0=0;
-
+    //Temporisation afin de determiner la duree
     while(PORTCbits.RC1==0);
-    T1CONbits.TMR1ON=1;
+    T1CONbits.TMR1ON=1; //On debute le comptage
     while(PORTCbits.RC1==1);
-    T1CONbits.TMR1ON=0;
+    T1CONbits.TMR1ON=0; //On arrete le comptage
 
-    int Timer=TMR1;
-    int Duree=Timer/2;
+    int Timer=TMR1; //Temps en µs
+    int Duree=Timer;
     int Distance;
-    if(Duree<60)
+    if(Duree<120) //Valeur aleatoire qui marche bien ^^
     {
         Distance=Duree/58 ;
         arret();
