@@ -47,6 +47,13 @@ Config:
  -D6,D7:moteur avant droit
  D0,D2,D4,D6:marche avant
  D1,D3,D5,D7:marche arriere
+
+ * Capteur a ultrasons:
+ -pin Echo: RC1
+ -Pin Trigger:RC0
+
+ * Capteur sonore:
+ -Pin Trigger:RE0
  */
 
 /******************************************************************************/
@@ -58,6 +65,18 @@ Config:
 /******************************************************************************/
 /*                          Sous Programme                                    */
 /******************************************************************************/
+
+
+void clap()
+{
+    if(PORTEbits.RE0==1)
+    {
+        LATBbits.LATB7=1;
+    }else{LATBbits.LATB7=0;}
+
+}
+
+
 void avance(int imp)
 {
     if(imp==1)
@@ -161,7 +180,8 @@ void main(void)
     int i;
     while(1)
     {
-        detection_obstacle();
+        //clap();
+        //detection_obstacle();
         //LATD0=!LATD0;
         //avance(1);
         //__delay_ms(1000);
