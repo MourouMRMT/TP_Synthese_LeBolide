@@ -14,6 +14,7 @@ Programme a dispostion mais recopie discutable.
 * avancer/Reculer
 * Detecter la zone d'arret au moyen d'un capteur a ultrasons et m'__arreter__
 * Tourner (gauche/droite)
+* Detecte un "clap"
 
 ##### A faire:
 - Lancer le programme au "clap"
