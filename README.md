@@ -15,9 +15,9 @@ Programme a dispostion mais recopie discutable.
 * Detecter la zone d'arret au moyen d'un capteur a ultrasons et m'__arreter__
 * Tourner (gauche/droite)
 * Detecte un "clap"
+* Lancer le programme au "clap"
 
 ##### A faire:
-- Lancer le programme au "clap"
 - Faire le tour de la boite
 - Affichage oled
 
