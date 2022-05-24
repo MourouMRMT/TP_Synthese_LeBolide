@@ -1,7 +1,7 @@
 /******************************************************************************/
                 /*Program by MARIMOUTOU Mourougen*/
                             /*Date:04/2022*/
-                            /*Revision:0.3.1*/
+                            /*Revision:0.4*/
 /******************************************************************************/
 /******************************************************************************/
 /* Files to Include                                                           */
@@ -48,8 +48,12 @@ Config:
  D1,D3,D5,D7:marche arriere
 
  * Capteur a ultrasons:
+ * Mur:
  -pin Echo: RC1
  -Pin Trigger:RC0
+ *Boite:
+ -pin Echo: RC7
+ -Pin Trigger:RC6
 
  * Capteur sonore:
  -Pin Trigger:RE0
@@ -57,7 +61,8 @@ Config:
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-int imp=0;
+int imp=0,obs=0;
+int cpt=0;
 /* i.e. uint8_t <variable_name>; */
 /******************************************************************************/
 /* Main Program                                                               */
@@ -67,11 +72,9 @@ void clap()
 {
     if(PORTEbits.RE0==1)
     {
-        //LATBbits.LATB7=1;
         imp=1;
-    }//else{LATBbits.LATB7=0;}
+    }
 }
-
 void avance(int imp)
 {
     if(imp==1)
@@ -95,20 +98,26 @@ void recule(int imp)
 }
 void tourner_droite()
 {
-    LATDbits.LATD4=0;
-    LATDbits.LATD5=1;
-    LATDbits.LATD6=1;
-    LATDbits.LATD7=0;
+    if(imp==1)
+    {
+    LATDbits.LATD0=0;
+    LATDbits.LATD1=1;
+    LATDbits.LATD2=1;
+    LATDbits.LATD3=0;
+    }
 
 }
 
 void tourner_gauche()
 {
+    if(imp==1)
+    {
 
-    LATDbits.LATD4=1;
-    LATDbits.LATD5=0;
-    LATDbits.LATD6=0;
-    LATDbits.LATD7=1;
+    LATDbits.LATD0=1;
+    LATDbits.LATD1=0;
+    LATDbits.LATD2=0;
+    LATDbits.LATD3=1;
+    }
 }
 
 
@@ -139,10 +148,47 @@ void detection_obstacle()
     {
         Distance=Duree/58 ;
         imp=0;
-    }//else{avance(imp);}
+    }else
+    {//tourner_gauche();
+        avance(imp);
+
+    }
     Duree=0;
     TMR1=0;
 
+}
+
+void tour_boite()
+{
+    //Generarion MLI
+    LATCbits.LATC7=1;
+     __delay_us(10);
+    LATCbits.LATC7=0;
+
+    //Temporisation afin de determiner la duree
+    while(PORTCbits.RC6==0);
+    T1CONbits.TMR1ON=1;     //On debute le comptage
+    while(PORTCbits.RC6==1);
+    T1CONbits.TMR1ON=0;     //On arrete le comptage
+
+
+    int Timer=TMR1;          //Temps en µs
+    int Duree=Timer;
+    int Distance;
+    if(Duree<180)
+    {
+        imp=0;
+        LATEbits.LATE1=0;
+        //Distance=Duree2/58 ;
+
+    }else
+    {tourner_gauche();
+        //avance(imp);
+        LATEbits.LATE1=1;
+
+    }
+    Duree=0;
+    TMR1=0;
 }
 
 
@@ -173,24 +219,20 @@ void main(void)
     ANSELE=0;
     TRISCbits.TRISC1=1;
     TRISEbits.TRISE0=1;
+    TRISEbits.TRISE1=0;
     TRISCbits.TRISC0=0;
     TRISBbits.TRISB7=0;
+    TRISCbits.TRISC7=0;
+    TRISCbits.TRISC6=1;
 
     while(1)
     {
         clap();
-        //arret();
+        //tour_boite();
+        //detection_obstacle();
+        //tourner_gauche();
         //affichage();
 
-        //LATD0=!LATD0;
-        avance(imp);
-        detection_obstacle();
-        //__delay_ms(1000);
-        //recule(1);
-        //__delay_ms(1000);
-
-        //for(i=0;i<1024;i++);
     }
 
 }
-
