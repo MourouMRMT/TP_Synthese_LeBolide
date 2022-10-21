@@ -16,9 +16,8 @@ Programme a dispostion mais recopie discutable.
 * Tourner (gauche/droite)
 * Detecte un "clap"
 * Lancer le programme au "clap"
-
+* Faire le tour de la boite
 ##### A faire:
-- Faire le tour de la boite
 - Affichage oled
 
 
